@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{chapter.chapter_title}} | {{story.story_title}}
+{% endblock %}
+
+{% block content %}
+    {{chapter.chapter_title}}<br/>
+    {{chapter.chapter_content|linebreaks}}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input style="height: 90px;width:400px; " type="text" name="content" placeholder="Add Your Response" /><br/>
+        <input type="checkbox" name="like" />
+        <input type="submit" value="Comment" />
+    </form>
+    {% for comment in comments %}
+        <a href="{% url 'author:show_profile' comment.commenter|slugify %}" >
+            {{comment.commenter}}
+        </a>
+        {{comment.posted|timesince:today}} ago<br/>
+        {{comment.content}}<br/>
+    {% endfor %}
+    <br/>
+
+    <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">
+        {{story.story_title}}
+    </a>
+    <br/>
+    {% for chapter in chapter_list %}
+        {{chapter.chapter_number}}.
+        <a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify chapter.chapter_title|slugify  %}">
+            {{chapter.chapter_title}}
+        </a><br/>
+    {% endfor %}
+{% endblock %}

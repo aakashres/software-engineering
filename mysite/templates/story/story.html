@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+    {{story.story_title}}
+{% endblock %}
+
+{% block content %}
+    {{story.story_title}}<br/>
+    {% if story.story_image %}
+        <img src="{{story.story_image.url}}" /> <br/>
+    {% endif %}
+    {{story.story_description}}<br/>
+    <hr/>
+    {% for chapter in chapter_list %}
+        {{chapter.chapter_number}}.
+        <a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify chapter.chapter_title|slugify  %}">
+            {{chapter.chapter_title}}
+        </a><br/>
+    {% endfor %}
+    {% for response in responses %}
+        <a href="{% url 'author:show_profile' response.commenter|slugify %}" >{{response.commenter}}</a>
+        {{response.posted|timesince:today}} ago<br/>
+        <a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify response.chapter.chapter_title|slugify %}">
+            {{response.chapter.chapter_title}}
+        </a><br/>
+        {{response.content}}<br/>
+    {% endfor %}
+{% endblock %}

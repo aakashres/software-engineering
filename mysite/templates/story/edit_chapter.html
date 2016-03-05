@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Chapter | Edit
+{% endblock %}
+
+{% block content %}
+    <form id="chapter-form" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title" value="{{chapter.chapter_title}}"required />
+        <input type="number" name="number" value="{{chapter.chapter_number}}" placeholder="Chapter" />
+        <input type="submit" value="Create" />
+    </form>
+    <textarea name="content" placeholder="Content" form="chapter-form">{{chapter.chapter_content}}</textarea>
+{% endblock %}

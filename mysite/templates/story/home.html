@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{block.super}}
+{% endblock %}
+
+
+{% block content %}
+    {% for story in stories %}
+        <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">
+            {{story.story_title}}
+        </a><br/>
+        <a href="{% url 'author:show_profile' story.author.user.username|slugify %}">
+            {{story.author.user.username}}
+        </a><br/>
+        {% if story.story_image %}
+            <img src="{{story.story_image.url}}" alt=""/>
+        {% endif %}
+        {{story.story_description|linebreaks}}
+    {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if stories.has_previous %}
+                <a href="?{{page_request_var}}={{ stories.previous_page_number }}
+                {% if request.GET.query %}&query={{request.GET.query}}
+                {% endif %}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ stories.number }} of {{ stories.paginator.num_pages }}.
+            </span>
+            {% if stories.has_next %}
+                <a href="?{{page_request_var}}={{ stories.next_page_number }}
+                {% if request.GET.query %}&query={{request.GET.query}}
+                {% endif %}">next</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

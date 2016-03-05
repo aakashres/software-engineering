@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Profile | {{instance.user.username}}
+{% endblock %}
+
+
+{% block content %}
+    {{instance.user.username}}<br/>
+    {{instance.first_name}}<br/>
+    {{instance.last_name}}<br/>
+    {{instance.user.email}}<br/>
+    {{instance.author_bio}}<br/>
+    {% if instance.author_image %}
+        <img src="{{instance.author_image.url}}" alt="" width="10%" height="10%"/><br/>
+    {% endif %}
+    <hr/>
+    <h2>Stories</h2>
+    {% for story in story_list %}
+        <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">
+            {{story.story_title}}
+        </a><br/>
+    {% endfor %}
+{% endblock %}

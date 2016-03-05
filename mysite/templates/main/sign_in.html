@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+	{{block.super}}| SignIn
+{% endblock %}
+
+
+{% block content %}
+    {% if error %}
+        {{error}}
+    {% endif %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="UserName" required >
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="submit" value="Sign In" />
+    </form>
+{% endblock %}

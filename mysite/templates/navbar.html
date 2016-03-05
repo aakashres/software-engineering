@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'main:main' %}">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'story:home' %}">Home</a></li>
+        <li><a href="{% url 'story:top_stories' %}">Top Stories</a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <form  action="{% url 'story:home' %}" method="GET">
+                <input style="margin-top:10px;" name="q" placeholder="Search Stories" type="search" value="{{request.GET.q}}"/>
+          </form>
+        </li>
+        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+
+        {% if not request.user.is_active %}
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">SIGN IN/UP
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'main:sign_in' %}">Sign In</a></li>
+              <li class="divider"></li>
+              <li><a href="{% url 'main:signup' %}">Sign Up</a></li>
+            </ul>
+          </li>
+        {% else %}
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{request.user}}
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'story:create_story' request.user|slugify %}">New Story</a></li>
+              <li class="divider"></li>
+              <li><a href="{% url 'author:show_profile' request.user|slugify %}">Profile</a></li>
+              <li><a href="{% url 'author:update_profile' request.user|slugify %}">Update Profile</a></li>
+              <li><a href="{% url 'main:sign_out' %}">Sign Out</a></li>
+            </ul>
+          </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>

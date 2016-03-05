@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  Story | Create
+{% endblock %}
+
+
+{% block content %}
+    <form id="story-form" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        <input type="text" name="title" placeholder="Title" required />
+        <input type="file" name="image" accept="image/*" />
+        <input type="submit" value="Create" />
+    </form>
+    <textarea name="description" placeholder="Description" form="story-form"></textarea>
+{% endblock %}
