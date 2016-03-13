@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <form  action="{% url 'story:home' %}" method="GET">
-                <input style="margin-top:10px;" name="q" placeholder="Search Stories" type="search" value="{{request.GET.q}}"/>
+                <input id="search-input" style="margin-top:10px;" name="q" placeholder="Search Stories" type="search" value="{{request.GET.q}}"/>
           </form>
         </li>
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>

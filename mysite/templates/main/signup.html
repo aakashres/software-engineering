@@ -1,19 +1,35 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}
 	{{block.super}}| SignUp
 {% endblock %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/signup.css'%}">
+{% endblock %}
+
 {% block content %}
-	{% if error %}
-		{{error}}
-	{% endif %}
-	<form method="POST" action="">
-		{% csrf_token %}
-		<input type="text" name="username" placeholder="UserName" required />
-		<input type="email" name="email" placeholder="example@example.com" required />
-		<input type="password" name="password1" placeholder="Password" required />
-		<input type="password" name="password2" placeholder="Confirm Password" required />
-		<input type="submit" value="Sign Up" />
-	</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-wrapper">
+                <div class="title">Sign up</div>
+                <div class="error">
+                	{% if error %}
+                		{{error}}
+                	{% endif %}
+                </div>
+            	<form id="signup-form" method="POST" action="">
+            		{% csrf_token %}
+            		<input type="text" name="username" placeholder="Username" required />
+            		<input type="email" name="email" placeholder="Email, eg:- abc@example.com" required />
+            		<input type="password" name="password1" placeholder="Password" required />
+            		<input type="password" name="password2" placeholder="Confirm Password" required />
+            		<input class="btn btn-default" type="submit" value="Sign Up" />
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
