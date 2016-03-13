@@ -1,0 +1,64 @@
+body{
+    padding-top: 80px!important;
+}
+
+.header{
+    margin-bottom: 30px;
+}
+
+.header .title{
+    font-size: 3em;
+    font-weight: 300;
+}
+
+.header .op{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.story-image{
+    padding: 10px;
+}
+
+.story-image img{
+    width: 100%;
+}
+
+.description{
+    line-height: 1.5;
+}
+
+.chapter-list, .response-list{
+    line-height: 1.5;
+    padding: 24px;
+}
+
+.chapter-list .chapter{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.23em;
+}
+
+.chapter-list .chapter .sn::after{
+    content: '.';
+}
+.chapter-list .chapter .sn{
+    width: 24px;
+    margin-right: 10px;
+}
+
+.response-list .response{
+    background-color: #ecf0f1;
+    padding: 24px;
+    margin-bottom: 10px;
+}
+.response .commenter{
+    font-weight: bold;
+}
+.response .content{
+    font-size: 0.88em;
+}
+.response .content{
+    line-height: 1.5;
+    margin-top: 16px;
+}

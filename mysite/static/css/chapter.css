@@ -1,0 +1,95 @@
+body{
+    padding-top: 80px!important;
+}
+
+.chapter{
+    background-color: #ecf0f1;
+    padding: 24px 32px;
+    margin-bottom: 20px;
+}
+
+.chapter .title{
+    font-size: 3em;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.chapter-list{
+    padding: 24px;
+    background-color: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+.chapter-list .story-title{
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.chapter-list .list-item .sn::after{
+    content: '.';
+}
+.chapter-list .list-item{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 16px;
+}
+.chapter-list .list-item .sn{
+    width: 24px;
+    margin-right: 10px;
+}
+.content{
+    text-align: justify;
+    line-height: 1.5;
+}
+
+.form-response{
+    background-color: #ecf0f1;
+    padding: 24px;
+    text-align: right;
+}
+.form-response .title{
+    font-weight: bold;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.form-response input[type=text],
+.form-response .checkbox{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-response input[type=text]{
+    padding: 10px 16px;
+}
+
+.form-response input[type=submit]{
+    margin-top: 10px;
+}
+
+.comment-list .title{
+    font-weight: bold;
+    padding-left: 10px;
+    margin-bottom: 16px;
+}
+
+.comment{
+    margin-bottom: 10px;
+    background-color: #ecf0f1;
+    padding: 24px;
+}
+
+.comment .commenter{
+    font-weight: bold;
+}
+
+.comment .time{
+    font-size: 0.88em;
+}
+
+.comment .content{
+    line-height: 1.5;
+    margin-top: 16px;
+}
