@@ -6,6 +6,7 @@ body{
     height: 400px;
     overflow: hidden;
     position: relative;
+    background-color: #ecf0f1;
 }
 
 .author-image img{
@@ -15,7 +16,7 @@ body{
 .user-info{
     padding: 24px;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     line-height: 1.5;
     position: absolute;
@@ -69,4 +70,10 @@ body{
     max-height: 200px;
     vertical-align: middle;
     margin: -24px -24px 24px -24px;
+}
+
+.empty{
+    font-size: 2em;
+    color: #bbb;
+    text-align: center;
 }

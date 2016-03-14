@@ -2,20 +2,23 @@
 
 <html>
 <head>
-  <title>
+    <title>
     {% block title %}
-      Frame
+        Frame
     {% endblock %}
-  </title>
-  	{% block style %}
-      <style>
+    </title>
 
-      </style>
-  	{% endblock style%}
+  	{% block style %}
+  	{% endblock style %}
+
+    {% block script %}
+    {% endblock %}
+
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/common.css'%}">
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    
 </head>
 <body id="myPage">
     {% include 'navbar.html' %}
