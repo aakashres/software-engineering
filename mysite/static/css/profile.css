@@ -1,0 +1,72 @@
+body{
+    padding-top: 60px !important;
+}
+
+.author-image {
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.author-image img{
+    width: 100%;
+}
+
+.user-info{
+    padding: 24px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    line-height: 1.5;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.user-info .name, .user-info .username{
+    font-size: 2em;
+}
+
+.user-info .name{
+    margin-bottom: 20px;
+}
+
+.user-info .email{
+    margin-bottom: 20px;
+}
+
+.story-list .title{
+    font-size: 3em;
+    font-weight: 300;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.story{
+    padding: 16px;
+    margin-bottom: 10px;
+    background-color: #bdc3c7;
+    overflow: hidden;
+}
+
+.story .title{
+    font-size: 1.5em;
+}
+
+.story .description{
+    margin-top: 10px;
+    text-align: justify;
+}
+
+.story-image img{
+    width: 100%;
+    margin: auto;
+}
+
+.story-image{
+    overflow: hidden;
+    max-height: 200px;
+    vertical-align: middle;
+    margin: -24px -24px 24px -24px;
+}
