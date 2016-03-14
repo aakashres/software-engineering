@@ -1,0 +1,35 @@
+body{
+    padding-top: 80px !important;
+}
+
+.form-wrapper{
+    padding: 24px;
+    background-color: #ecf0f1;
+}
+
+.title{
+    font-size: 2em;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+#story-form{
+    text-align: right;
+}
+
+#story-form input, #story-form textarea{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+#story-form input[type=text],
+#story-form textarea,
+#story-form input[type=file]{
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: #fff;
+}

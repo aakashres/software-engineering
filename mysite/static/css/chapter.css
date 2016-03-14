@@ -46,6 +46,7 @@ body{
     background-color: #ecf0f1;
     padding: 24px;
     text-align: right;
+    margin-bottom: 20px;
 }
 .form-response .title{
     font-weight: bold;
