@@ -1,38 +1,19 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 
-<!-- TODO: Rename this file to signin.html -->
 
 {% block title %}
 	{{block.super}}| SignIn
 {% endblock %}
 
-{% block style %}
-<link rel="stylesheet" href="{% static 'css/signin.css'%}">
-{% endblock %}
-
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="form-wrapper">
-                <div class="title">
-                    Sign in
-                </div>
-                <div class="error">
-                    {% if error %}
-                        {{error}}
-                    {% endif %}
-                </div>
-                <form id="signin-form" method="POST" action="">
-                    {% csrf_token %}
-                    <input type="text" name="username" placeholder="UserName" required >
-                    <input type="password" name="password" placeholder="Password" required />
-                    <input class="btn btn-default" type="submit" value="Sign In" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+    {% if error %}
+        {{error}}
+    {% endif %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="UserName" required >
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="submit" value="Sign In" />
+    </form>
 {% endblock %}

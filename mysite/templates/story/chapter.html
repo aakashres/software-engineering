@@ -1,62 +1,36 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+
 
 {% block title %}
     {{chapter.chapter_title}} | {{story.story_title}}
 {% endblock %}
 
-{% block style %}
-<link rel="stylesheet" href="{% static 'css/chapter.css'%}">
-{% endblock %}
-
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="chapter">
-                <div class="title">{{chapter.chapter_title}}</div>
-                <div class="content">{{chapter.chapter_content|linebreaks}}</div>
-            </div>
-            <div class="form-response">
-                <div class="title">Respond to this chapter</div>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="content" placeholder="Your response" >
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="like">I liked it</label>
-                    </div>
-                    <input class="btn btn-default" type="submit">
-                </form>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="chapter-list">
-                <div class="story-title"><a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">{{story.story_title}}</a></div>
-                {% for chapter in chapter_list %}
-                <div class="list-item">
-                    <span class="sn">{{chapter.chapter_number}}</span><a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify chapter.chapter_title|slugify  %}">{{chapter.chapter_title}}</a>
-                </div>
-                {% endfor %}
-            </div>
-            <div class="comment-list">
-                <div class="title">Comments</div>
-                {% for comment in comments %}
-                <div class="comment">
-                    <div class="commenter">
-                        <a href="{% url 'author:show_profile' comment.commenter|slugify %}" >{{comment.commenter}}</a>
-                    </div>
-                    <div class="time">{{comment.posted|timesince:today}} ago</div>
-                    <div class="content">{{comment.content}}</div>
-                </div>
-                {% empty %}
-                <div class="comment">
-                    No comments yet
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
+    {{chapter.chapter_title}}<br/>
+    {{chapter.chapter_content|linebreaks}}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input style="height: 90px;width:400px; " type="text" name="content" placeholder="Add Your Response" /><br/>
+        <input type="checkbox" name="like" />
+        <input type="submit" value="Comment" />
+    </form>
+    {% for comment in comments %}
+        <a href="{% url 'author:show_profile' comment.commenter|slugify %}" >
+            {{comment.commenter}}
+        </a>
+        {{comment.posted|timesince:today}} ago<br/>
+        {{comment.content}}<br/>
+    {% endfor %}
     <br/>
-</div>
+
+    <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">
+        {{story.story_title}}
+    </a>
+    <br/>
+    {% for chapter in chapter_list %}
+        {{chapter.chapter_number}}.
+        <a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify chapter.chapter_title|slugify  %}">
+            {{chapter.chapter_title}}
+        </a><br/>
+    {% endfor %}
 {% endblock %}

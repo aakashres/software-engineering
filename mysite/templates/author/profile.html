@@ -1,71 +1,25 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+
 
 {% block title %}
     Profile | {{instance.user.username}}
 {% endblock %}
 
-{% block style %}
-<link rel="stylesheet" href="{% static 'css/profile.css'%}">
-{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="author-image">
-                {% if instance.author_image %}
-                    <img src="{{instance.author_image.url}}" />
-                {% endif %}
-                <div class="user-info">
-                    <div class="username">@{{instance.user.username}}</div>
-                    <div class="name"><span class="first">{{instance.first_name}}</span> <span class="last">{{instance.last_name}}</span></div>
-                    <label>email</label>
-                    <div class="email">{{instance.user.email}}</div>
-                    <label>bio</label>
-                    <div class="bio">{{instance.author_bio}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="story-list">
-                <div class="title">Stories</div>
-                <div class="row">
-                    {% for story in story_list %}
-                    <div class="col-md-4">
-                        <div class="story">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {% if story.story_image %}
-                                    <div class="story-image">
-                                        <img src="{{story.story_image.url}}" alt=""/>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="title">
-                                        <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">{{story.story_title}}</a>
-                                    </div>
-                                    <div class="description">
-                                        {{story.story_description|linebreaks}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <div class="col-md-12">
-                        <div class="empty">
-                            No stories yet
-                        </div>
-                    </div>
-                    {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+    {{instance.user.username}}<br/>
+    {{instance.first_name}}<br/>
+    {{instance.last_name}}<br/>
+    {{instance.user.email}}<br/>
+    {{instance.author_bio}}<br/>
+    {% if instance.author_image %}
+        <img src="{{instance.author_image.url}}" alt="" width="10%" height="10%"/><br/>
+    {% endif %}
+    <hr/>
+    <h2>Stories</h2>
+    {% for story in story_list %}
+        <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">
+            {{story.story_title}}
+        </a><br/>
+    {% endfor %}
 {% endblock %}

@@ -1,54 +1,19 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+
 
 {% block title %}
 	Update | {{instance.user.username}}
 {% endblock %}
 
-{% block style %}
-<link rel="stylesheet" href="{% static 'css/update-profile.css'%}">
-{% endblock %}
-
-{% block script %}
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('img-author').src = e.target.result;
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-{% endblock %}
-
 
 {% block content %}
-<div class="container">
-    <div class="author-image">
-        {% if instance.author_image %}
-            <img id="img-author" src="{{instance.author_image.url}}" />
-        {% endif %}
-        <div class="form-wrapper">
-            <form method="POST" action="" id="profile-form" enctype="multipart/form-data">
-        		{% csrf_token %}
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label>First name</label>
-                        <input type="text" name="first_name" placeholder="First Name" value="{{instance.first_name}}" required >
-                    </div>
-                    <div class="col-xs-6">
-                        <label>Last name</label>
-                        <input type="text" name="last_name" placeholder="Last Name" value="{{instance.last_name}}" required >
-                    </div>
-                </div>
-        		<input id="author-image-input" type="file" name="image" accept="image/*" onchange="readURL(this)"/>
-                <textarea name="bio" placeholder="Bio" required>{{instance.author_bio}}</textarea>
-        		<input class="btn btn-default" type="submit"  />
-        	</form>
-        </div>
-    </div>
-
-</div>
+	<form method="POST" action="" id="profile-form" enctype="multipart/form-data">
+		{% csrf_token %}
+		<input type="text" name="first_name" placeholder="First Name" value="{{instance.first_name}}" required />
+		<input type="text" name="last_name" placeholder="Last Name" value="{{instance.last_name}}" required />
+		<img src="{{instance.author_image.url}}" alt="" width="10%" height="10%"/>
+		<input type="file" name="image" accept="image/*"/>
+		<input type="submit" value="Update" />
+	</form>
+	<textarea name="bio" form="profile-form" placeholder="Bio" required>{{instance.author_bio}}</textarea>
 {% endblock %}

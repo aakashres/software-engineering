@@ -1,47 +1,24 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+
 
 {% block title %}
     {{block.super}}
 {% endblock %}
 
-{% block style %}
-<link rel="stylesheet" href="{% static 'css/home.css'%}">
-{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        {% for story in stories %}
-        <div class="col-md-6">
-            <div class="story">
-                <div class="row">
-                    <div class="col-md-12">
-                        {% if story.story_image %}
-                        <div class="story-image">
-                            <img src="{{story.story_image.url}}" alt=""/>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="title">
-                            <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">{{story.story_title}}</a>
-                        </div>
-                        <div class="op">
-                            by <a href="{% url 'author:show_profile' story.author.user.username|slugify %}">{{story.author.user.username}}</a>
-                        </div>
-                        <div class="description">
-                            {{story.story_description|linebreaks}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-
+    {% for story in stories %}
+        <a href="{% url 'story:story' story.author.user.username|slugify story.story_title|slugify %}">
+            {{story.story_title}}
+        </a><br/>
+        <a href="{% url 'author:show_profile' story.author.user.username|slugify %}">
+            {{story.author.user.username}}
+        </a><br/>
+        {% if story.story_image %}
+            <img src="{{story.story_image.url}}" alt=""/>
+        {% endif %}
+        {{story.story_description|linebreaks}}
+    {% endfor %}
     <div class="pagination">
         <span class="step-links">
             {% if stories.has_previous %}
@@ -59,5 +36,4 @@
             {% endif %}
         </span>
     </div>
-</div>
 {% endblock %}

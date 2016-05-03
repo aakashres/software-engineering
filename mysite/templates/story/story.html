@@ -6,52 +6,25 @@
     {{story.story_title}}
 {% endblock %}
 
-{% block style %}
-<link rel="stylesheet" href="{% static 'css/story.css'%}">
-{% endblock %}
-
 {% block content %}
-<div class="container">
-    <div class="header">
-        <div class="title">{{story.story_title}}</div>
-        <div class="op">by <a href="{% url 'author:show_profile' story.author.user.username|slugify %}">{{story.author.user.username}}</a></div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            {% if story.story_image %}
-            <div class="story-image">
-                <img src="{{story.story_image.url}}"/>
-            </div>
-            {% endif %}
-        </div>
-        <div class="col-md-8">
-            <div class="description">
-                {{story.story_description}}
-            </div>
-            <div class="chapter-list">
-            {% for chapter in chapter_list %}
-                <div class="chapter">
-                    <span class="sn">{{chapter.chapter_number}}</span><a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify chapter.chapter_title|slugify  %}">{{chapter.chapter_title}}</a>
-                </div>
-            {% endfor %}
-            </div>
-            <div class="response-list">
-                {% for response in responses %}
-                <div class="response">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="commenter"><a href="{% url 'author:show_profile' response.commenter|slugify %}" >{{response.commenter}}</a></div>
-                            <div class="time">{{response.posted|timesince:today}} ago</div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="chapter-title"><a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify response.chapter.chapter_title|slugify %}">{{response.chapter.chapter_title}}</a></div>
-                            <div class="content">{{response.content}}</div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+    {{story.story_title}}<br/>
+    {% if story.story_image %}
+        <img src="{{story.story_image.url}}" /> <br/>
+    {% endif %}
+    {{story.story_description}}<br/>
+    <hr/>
+    {% for chapter in chapter_list %}
+        {{chapter.chapter_number}}.
+        <a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify chapter.chapter_title|slugify  %}">
+            {{chapter.chapter_title}}
+        </a><br/>
+    {% endfor %}
+    {% for response in responses %}
+        <a href="{% url 'author:show_profile' response.commenter|slugify %}" >{{response.commenter}}</a>
+        {{response.posted|timesince:today}} ago<br/>
+        <a href="{% url 'story:chapter' author.user.username|slugify story.story_title|slugify response.chapter.chapter_title|slugify %}">
+            {{response.chapter.chapter_title}}
+        </a><br/>
+        {{response.content}}<br/>
+    {% endfor %}
 {% endblock %}
